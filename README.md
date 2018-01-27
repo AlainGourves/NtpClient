@@ -16,11 +16,11 @@ You don't need anything more. Time update is managed inside library so, after `N
 
 Update frequency is higher (every 15 seconds as default) until 1st successful sync is achieved. Since then, your own (or default 1800 seconds) adjusted period applies. There is a way to adjust both period if needed.
 
-In order to reduce scketch size, ESP8266 version makes use of internal Espressif SDK routines that already implement SNTP protocol.
+In order to reduce sketch size, ESP8266 version makes use of internal Espressif SDK routines that already implement SNTP protocol.
 
-This library includes an uptime log too. It counts number of seconds since scketch is started. It can be checked calling `NTP.getUptime()` or `NTP.getUptimeString()` for a human readable string.
+This library includes an uptime log too. It counts number of seconds since sketch is started. It can be checked calling `NTP.getUptime()` or `NTP.getUptimeString()` for a human readable string.
 
-Every time that local time is adjuste a `ntpEvent` is thrown. You can attach a function to it using `NTP.onNTPSyncEvent()`. Indeed, this event is thrown just before time is sent to [Time] Libary. Bacause of that, you should try not to make time consuming tasks inside event handler. Although it is taken into account inside library, it would add some offset to calculated time.
+Every time that local time is adjuste a `ntpEvent` is thrown. You can attach a function to it using `NTP.onNTPSyncEvent()`. Indeed, this event is thrown just before time is sent to [Time](https://github.com/PaulStoffregen/Time.git) Libary. Because of that, you should try not to make time consuming tasks inside event handler. Although it is taken into account inside library, it would add some offset to calculated time.
 
 Called funtion format must be like `void eventHandler(NTPSyncEvent_t event)`.
 
@@ -195,12 +195,12 @@ void loop()
 ```
 
 ## Performance
-Don't expect atomic-clock-like precission. This library does not take network delay into account neither uses all NTP mechanisms available to improve accuracy. It is in the range of 1 to 2 seconds. Enough for most projects.
+Don't expect atomic-clock-like precision. This library does not take network delay into account neither uses all NTP mechanisms available to improve accuracy. It is in the range of 1 to 2 seconds. Enough for most projects.
 
-Next major update will add network delay compensation. Due to limited Time Library precission of 1 second, it probably will not affect overall accuracy.
+Next major update will add network delay compensation. Due to limited Time Library precision of 1 second, it probably will not affect overall accuracy.
 
 ## Dependencies
-This library makes use of [Time](https://github.com/PaulStoffregen/Time.git) library. You need to add it to use NTPClientLib
+This library makes use of [Time](https://github.com/PaulStoffregen/Time.git) library. You need to add it to use NTPClientLib.
 _________________________________________________________
 
 [ntpClient.ino](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi/examples/NTPClient) is an example of how this library works. It shows current time and uptime every 5 seconds as soon it gets synchronized.
